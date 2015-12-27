@@ -14,9 +14,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity implements LocationListener{
-	static final int MIN_TIME = 5000; //¦ì¸m§ó·s±ø¥ó:5000 ²@¬í(=5¬í)
-	static final float MIN_DIST = 5; //¦ì¸m§ó·s±ø¥ó: 5 ¤½¤Ø
-	LocationManager locmgr; //©w¦ìºŞ²z­û
+	static final int MIN_TIME = 5000; //ä½ç½®æ›´æ–°æ¢ä»¶:5000 æ¯«ç§’(=5ç§’)
+	static final float MIN_DIST = 5; //ä½ç½®æ›´æ–°æ¢ä»¶: 5 å…¬å°º
+	LocationManager locmgr; //å®šä½ç®¡ç†å“¡
 	TextView txv;
 	
 	
@@ -27,7 +27,7 @@ public class MainActivity extends Activity implements LocationListener{
 		txv = (TextView)findViewById(R.id.textVeiw1);
 		
 		
-		//¨ú±o¨t²ÎªA°Èªº LocationManagerª«¥ó
+		//å–å¾—ç³»çµ±æœå‹™çš„ LocationManagerç‰©ä»¶
 		locmgr = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
 		locmgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 6000, 1, this);
 //		locmgr.setTestProviderEnabled(LocationManager.GPS_PROVIDER, true);
@@ -36,7 +36,7 @@ public class MainActivity extends Activity implements LocationListener{
 		if(locmgr.isProviderEnabled(LocationManager.GPS_PROVIDER) || locmgr.isProviderEnabled(LocationManager.NETWORK_PROVIDER)){
 			locationServiceInitial();
 		}else{
-			Toast.makeText(MainActivity.this, "½Ğ¶}±Ò©w¦ìªA°È", Toast.LENGTH_LONG).show();
+			Toast.makeText(MainActivity.this, "è«‹é–‹å•Ÿå®šä½æœå‹™", Toast.LENGTH_LONG).show();
 			startActivity(new Intent(Settings.ACTION_LOCALE_SETTINGS));
 		}
 		
@@ -78,7 +78,7 @@ public class MainActivity extends Activity implements LocationListener{
 			String values = String.valueOf(longitude) + " ; " + String.valueOf(latitude);
 			txv.setText(values);
 		}else{
-			Toast.makeText(MainActivity.this, "µLªk©w¦ì®y¼Ğ" , Toast.LENGTH_LONG).show();
+			Toast.makeText(MainActivity.this, "ç„¡æ³•å®šä½åº§æ¨™" , Toast.LENGTH_LONG).show();
 		}
 	
 		
@@ -90,23 +90,23 @@ public class MainActivity extends Activity implements LocationListener{
 //		locmgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 6000, 1, this);
 //		Toast.makeText(MainActivity.this, "onResume", Toast.LENGTH_LONG).show();
 		
-//		//¨ú±o³Ì¨Îªº©w¦ì´£¨ÑªÌ.  true:§ä¥X¤w±Ò¥Îªº´£¨ÑªÌ
+//		//å–å¾—æœ€ä½³çš„å®šä½æä¾›è€….  true:æ‰¾å‡ºå·²å•Ÿç”¨çš„æä¾›è€…
 //		String best = locmgr.getBestProvider(new Criteria(), true);
 //		
-//		//¦pªG¦³©w¦ì´£¨ÑªÌ¥i¥Î
+//		//å¦‚æœæœ‰å®šä½æä¾›è€…å¯ç”¨
 //		if(best != null){
-//			txv.setText("¨ú±o©w¦ì¸ê®Æ¤¤...");
-//			//µù¥U¦ì¸m¨Æ¥óºÊÅ¥¾¹
+//			txv.setText("å–å¾—å®šä½è³‡æ–™ä¸­...");
+//			//è¨»å†Šä½ç½®äº‹ä»¶ç›£è½å™¨
 //			locmgr.requestLocationUpdates(best, MIN_TIME, MIN_DIST, this);
 //		}else{
-//			txv.setText("½Ğ½T»{¤w¶}±Ò©w¦ì¥\¯à");
+//			txv.setText("è«‹ç¢ºèªå·²é–‹å•Ÿå®šä½åŠŸèƒ½");
 //		}
 	}
 	
 	@Override
 	protected void onPause() {
 		super.onPause();
-		//¨ú®øµù¥U§ó·s¨Æ¥ó
+		//å–æ¶ˆè¨»å†Šæ›´æ–°äº‹ä»¶
 		locmgr.removeUpdates(this);
 	}
 
